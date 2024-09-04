@@ -1,4 +1,12 @@
 defmodule Libremarket.Compras do
+
+  def comprar() do
+    {:show_me_the_money}
+  end
+
+end
+
+defmodule Libremarket.Compras.Server do
   @moduledoc """
   Compras
   """
@@ -33,7 +41,8 @@ defmodule Libremarket.Compras do
   """
   @impl true
   def handle_call(:comprar, _from, state) do
-    {:reply, :show_me_the_money, state}
+    result = Libremarket.Compras.comprar
+    {:reply, result, state}
   end
 
 end
