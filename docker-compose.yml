@@ -1,6 +1,6 @@
 services:
   compras:
-    image: elixir:alpine
+    image: elixir:otp-27-alpine
     container_name: compras
     volumes:
       - ./:/app
@@ -10,6 +10,7 @@ services:
       SERVER_TO_RUN: Libremarket.Compras.Server
       MIX_HOME: /app/mix_home
       HEX_HOME: /app/hex_home
+      CLOUDAMQP_URL: ${CLOUDAMQP_URL}
     command: iex --sname compras --cookie secret -S mix
     # para habilitar -it
     stdin_open: true
@@ -17,7 +18,7 @@ services:
     user: "${DOCKER_UID}:${DOCKER_GID}"
 
   infracciones:
-    image: elixir:alpine
+    image: elixir:otp-27-alpine
     container_name: infracciones
     volumes:
       - ./:/app
@@ -27,6 +28,7 @@ services:
       SERVER_TO_RUN: Libremarket.Infracciones.Server
       MIX_HOME: /app/mix_home
       HEX_HOME: /app/hex_home
+      CLOUDAMQP_URL: ${CLOUDAMQP_URL}
     command: iex --sname infracciones --cookie secret -S mix
     # para habilitar -it
     stdin_open: true
